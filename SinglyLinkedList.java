@@ -8,6 +8,8 @@ import java.util.*;
  */
 public class SinglyLinkedList{
   private ListNode first;  // first element
+  private ListNode last;
+  private int nodes;
 
   /**
    *  Constructor for the SinglyLinkedList object
@@ -15,6 +17,8 @@ public class SinglyLinkedList{
    */
   public SinglyLinkedList(){
     first = null;
+    last = null;
+    nodes = 0; 
   }
 
   /**
@@ -39,6 +43,7 @@ public class SinglyLinkedList{
     // note the order that things happen:
     // head is parameter, then assigned
     first = new ListNode(value, first);
+    nodes++;
   }
 
   /**
@@ -50,6 +55,30 @@ public class SinglyLinkedList{
       System.out.print(temp.getValue() + " ");
       temp = temp.getNext();// go to next node
     }
+  }
+  
+  public Object getLast(){
+    if(last==null)
+      throw new NoSuchElementException();
+    else
+      return last.getValue();
+  }
+
+  public void addLast(Integer x){
+    if(first == null)
+    {
+      first = new ListNode(x,last);
+      last = first;
+      nodes++;
+    }else{
+      last.setNext(new ListNode(x, null));
+      last = last.getNext();
+      nodes++;
+    }
+  }
+
+  public int size(){
+    return nodes;
   }
 
   /**
